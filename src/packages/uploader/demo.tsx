@@ -145,6 +145,7 @@ const UploaderDemo = () => {
       message: translated['844759c9'],
       type: 'image',
       uid: '122',
+      memo: '231231231'
     },
     {
       name: translated.df9128ec,
@@ -252,6 +253,8 @@ const UploaderDemo = () => {
   const clearUpload = () => {
     ;(uploadRef.current as uploadRefState).clear()
   }
+
+  const [files, setFiles] = useState([])
   return (
     <>
       <div className="demo bg-w demo-uploader">
@@ -260,6 +263,7 @@ const UploaderDemo = () => {
           <Uploader
             url={uploadUrl}
             onStart={onStart}
+            value={files}
             style={{
               marginRight: '10px',
               marginBottom: '10px',
@@ -268,6 +272,8 @@ const UploaderDemo = () => {
               console.log('outer onChange', v)
             }}
           />
+          <Button onClick={() => {console.log(files)}}>查看</Button>
+
           <Uploader
             url={uploadUrl}
             uploadLabel="商品主图"

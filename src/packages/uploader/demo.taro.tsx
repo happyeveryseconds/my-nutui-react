@@ -148,11 +148,12 @@ const UploaderDemo = () => {
   const defaultFileList: FileItem[] = [
     {
       name: translated['6114cef1'],
-      url: 'https://m.360buyimg.com/babel/jfs/t1/164410/22/25162/93384/616eac6cE6c711350/0cac53c1b82e1b05.gif',
+      url: 'https://m.360buyimg.com/babel/jfs/t1/164410/22/25162/93384/616eac6cE6c711350/0cac53c1b82e1b051.gif',
       status: 'success',
       message: translated['844759c9'],
       type: 'image',
       uid: '122',
+      memo: '123123213'
     },
     {
       name: translated.df9128ec,

@@ -26,6 +26,7 @@ export interface UploaderProps extends BasicComponent {
   uploadIcon?: React.ReactNode
   uploadLabel?: React.ReactNode
   name: string
+  memo: string
   accept: string
   disabled: boolean
   autoUpload: boolean
@@ -377,6 +378,15 @@ const InternalUploader: ForwardRefRenderFunction<
     }
   }
 
+  const onSetMemoItem = (memo: string, file: FileItem, index: number) => {
+    const newFiles = [...fileList]
+    newFiles[index] = {...file, memo: memo}
+    console.log(newFiles)
+    //console.log(file)
+    setFileList(newFiles)
+
+  }
+
   const handleItemClick = (file: FileItem, index: number) => {
     onFileItemClick?.(file, index)
   }
@@ -401,6 +411,7 @@ const InternalUploader: ForwardRefRenderFunction<
               multiple={multiple}
               onChange={fileChange}
             />
+            
           )}
         </div>
       )}
@@ -411,6 +422,7 @@ const InternalUploader: ForwardRefRenderFunction<
           previewType,
           deletable,
           onDeleteItem,
+          onSetMemoItem,
           handleItemClick,
           previewUrl,
           children,

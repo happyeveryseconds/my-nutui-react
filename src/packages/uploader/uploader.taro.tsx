@@ -76,6 +76,7 @@ export interface UploaderProps extends BasicComponent {
   uploadIcon?: React.ReactNode
   uploadLabel?: React.ReactNode
   name: string
+  memo: string
   accept: string
   disabled: boolean
   autoUpload: boolean
@@ -131,6 +132,7 @@ const defaultProps = {
   previewType: 'picture',
   fit: 'cover',
   name: 'file',
+  memo: '',
   accept: '*',
   disabled: false,
   autoUpload: true,
@@ -161,6 +163,7 @@ const InternalUploader: ForwardRefRenderFunction<
     uploadLabel,
     accept,
     name,
+    memo,
     camera,
     defaultValue,
     value,
@@ -467,6 +470,14 @@ const InternalUploader: ForwardRefRenderFunction<
     })
   }
 
+  const onSetMemoItem = (memo: string, file: FileItem, index: number) => {
+    const newFiles = [...fileList]
+    newFiles[index] = {...file, memo: memo}
+    //console.log(file)
+    setFileList(newFiles)
+
+  }
+
   const onChangeMedia = (res: Taro.chooseMedia.SuccessCallbackResult) => {
     // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
     const { tempFiles } = res
@@ -508,17 +519,18 @@ const InternalUploader: ForwardRefRenderFunction<
           previewType,
           deletable,
           onDeleteItem,
+          onSetMemoItem,
           handleItemClick,
           previewUrl,
           children,
+
         }}
       />
 
       {maxCount > fileList.length && previewType === 'picture' && !children && (
         <div
-          className={`nut-uploader-upload ${previewType} ${
-            disabled ? 'nut-uploader-upload-disabled' : ''
-          }`}
+          className={`nut-uploader-upload ${previewType} ${disabled ? 'nut-uploader-upload-disabled' : ''
+            }`}
         >
           <div className="nut-uploader-icon">
             {uploadIcon}
