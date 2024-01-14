@@ -24,6 +24,8 @@ export class FileItem {
   loadingIcon?: ReactNode
 
   failIcon?: ReactNode
+
+  memo?: string
 }
 
 export type FileItemStatus =
